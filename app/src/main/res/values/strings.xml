@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyLibrary</string>
+    <string name="book_image_desc">Book image</string>
+</resources>
