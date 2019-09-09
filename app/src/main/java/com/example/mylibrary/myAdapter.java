@@ -1,6 +1,7 @@
 package com.example.mylibrary;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class myAdapter extends RecyclerView.Adapter<myAdapter.NumberViewHolder> {
-    private int mNumberItems;
 
-    public myAdapter(int numberItems)
+    public interface ListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
+    }
+
+    private int mNumberItems;
+    final private ListItemClickListener mOnClickListener;
+
+    public myAdapter(int numberItems,ListItemClickListener listener)
     {
         mNumberItems=numberItems;
+        mOnClickListener=listener;
     }
+
+
 
     @NonNull
     @Override
@@ -44,8 +54,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.NumberViewHolder> 
         return mNumberItems;
     }
 
-    class NumberViewHolder extends RecyclerView.ViewHolder
-    {
+    public class NumberViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
         TextView mBookName;
         TextView mBookInfo;
         ImageView mBookCover;
@@ -60,22 +69,24 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.NumberViewHolder> 
         {
             super(itemView);
 
-            mBookName=(TextView) itemView.findViewById(R.id.book_title);
-            mBookInfo=(TextView) itemView.findViewById(R.id.book_info);
-            mBookCover=(ImageView) itemView.findViewById(R.id.book_image);
-            mstarIcon=(ImageView) itemView.findViewById(R.id.star_icon);
-            mClockIcon=(ImageView) itemView.findViewById(R.id.clock_icon);
-            mHaveReadIcon=(ImageView) itemView.findViewById(R.id.have_read);
-            mNewCollectionIcon=(ImageView) itemView.findViewById(R.id.new_collection);
-            mSettings=(ImageView) itemView.findViewById(R.id.settings);
+            mBookName= itemView.findViewById(R.id.book_title);
+            mBookInfo= itemView.findViewById(R.id.book_info);
+            mBookCover= itemView.findViewById(R.id.book_image);
+            mstarIcon= itemView.findViewById(R.id.star_icon);
+            mClockIcon= itemView.findViewById(R.id.clock_icon);
+            mHaveReadIcon= itemView.findViewById(R.id.have_read);
+            mNewCollectionIcon= itemView.findViewById(R.id.new_collection);
+            mSettings= itemView.findViewById(R.id.settings);
             mProgressBar=itemView.findViewById(R.id.book_progressbar);
+
+            itemView.setOnClickListener(this);
 
         }
 
         void bind(int listIndex)
         {
-            mBookName.setText(String.valueOf(listIndex));
-            mBookInfo.setText(String.valueOf(listIndex));
+           mBookName.setText("ViewHolder index: "+ listIndex);
+            mBookInfo.setText("ViewHolder index: "+ listIndex);
             mBookCover.setImageResource(R.drawable.bookcover);
             mstarIcon.setImageResource(R.drawable.ic_action_star_icon);
             mClockIcon.setImageResource(R.drawable.ic_action_clock_icon);
@@ -85,5 +96,12 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.NumberViewHolder> 
             mProgressBar.setVisibility(View.VISIBLE);
 
         }
+
+        @Override
+        public void onClick(View view) {
+            int clickedPosition = getAdapterPosition();
+            mOnClickListener.onListItemClick(clickedPosition);
+        }
     }
 }
+

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <group android:id="@+id/firstSeperator" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_reading_now"
+            android:title="Reading Now"
+            android:icon="@drawable/ic_action_reading_now_icon"
+            />
+
+        <item
+            android:id="@+id/nav_books_and_documents"
+            android:title="Books &amp; documents"
+            android:icon="@drawable/ic_action_books_and_documents_icon"
+            />
+
+        <item
+            android:id="@+id/nav_favourites"
+            android:title="Favourites"
+            android:icon="@drawable/ic_action_star_icon"
+            />
+
+        <item
+            android:id="@+id/nav_to_read"
+            android:title="To Read"
+            android:icon="@drawable/ic_action_clock_icon"
+            />
+
+        <item
+            android:id="@+id/nav_nav_have_read"
+            android:title="Have Read"
+            android:icon="@drawable/ic_action_have_read_icon"
+            />
+
+        <item
+            android:id="@+id/nav_authors"
+            android:title="Authors"
+            android:icon="@drawable/ic_action_author_icon"
+            />
+
+        <item
+            android:id="@+id/nav_series"
+            android:title="Series"
+            android:icon="@drawable/ic_action_series_icon"
+            />
+
+        <item
+            android:id="@+id/nav_collections"
+            android:title="Collections"
+            android:icon="@drawable/ic_action_new_collection_icon"
+            />
+
+        <item
+            android:id="@+id/nav_formats"
+            android:title="Formats"
+            android:icon="@drawable/ic_action_formats_icon"
+            />
+
+        <item
+            android:id="@+id/nav_folders"
+            android:title="Folders"
+            android:icon="@drawable/ic_action_folder_icon"
+            />
+
+        <item
+            android:id="@+id/nav_downloads"
+            android:title="Downloads"
+            android:icon="@drawable/ic_action_downloads_icon"
+            />
+
+        <item
+            android:id="@+id/nav_trash"
+            android:title="Trash"
+            android:icon="@drawable/ic_action_trash_icon"
+            />
+    </group>
+
+        <group android:id="@+id/secondSeperator">
+    <item
+        android:id="@+id/nav_settings"
+        android:title="Settings"
+        android:icon="@drawable/ic_action_nav_settings_icon"
+        />
+    <item
+        android:id="@+id/nav_send_feedback"
+        android:title="Send Feedback"
+        android:icon="@drawable/ic_action_send_feedback_icon"
+        />
+        </group>
+</menu>

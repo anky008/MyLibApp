@@ -1,145 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
-    android:padding="20dp"
-    android:background="@color/colorAccent"
+    android:orientation="vertical"
     >
+<androidx.cardview.widget.CardView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    app:cardCornerRadius="15dp"
+    app:cardBackgroundColor="#FFFFFF">
 
-        <ImageView
-            android:id="@+id/book_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="280dp"
-            android:layout_marginRight="280dp"
-            android:layout_marginBottom="10dp"
-            android:contentDescription="@string/book_image_desc"
-            android:src="@drawable/bookcover"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/book_title"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginRight="100dp"
-            android:text="Title"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toTopOf="@+id/book_info"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/book_image"
-            app:layout_constraintTop_toTopOf="@+id/book_image" />
+            >
 
-        <TextView
-            android:id="@+id/book_info"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginRight="100dp"
-            android:text="Book_info"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/book_progressbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/book_image"
-            app:layout_constraintTop_toBottomOf="@+id/book_title" />
+                <ImageView
+                    android:id="@+id/book_image"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="280dp"
+                    android:layout_marginRight="280dp"
+                    android:layout_marginBottom="10dp"
+                    android:contentDescription="@string/book_image_desc"
+                    android:src="@drawable/bookcover"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/star_icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginRight="100dp"
-            android:contentDescription="Staricon"
-            app:layout_constraintBottom_toBottomOf="@+id/book_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/book_progressbar"
-            tools:srcCompat="@drawable/ic_action_star_icon" />
+            <TextView
+                android:id="@+id/book_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="100dp"
+                android:fontFamily="sans-serif"
+                android:scrollHorizontally="false"
+                android:singleLine="false"
 
-        <ImageView
-            android:id="@+id/clock_icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="180dp"
-            android:layout_marginRight="180dp"
-            android:contentDescription="clock icon"
-            app:layout_constraintBottom_toBottomOf="@+id/book_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/star_icon"
-            app:layout_constraintTop_toBottomOf="@+id/book_progressbar"
-            tools:srcCompat="@drawable/ic_action_clock_icon" />
+                android:text="Title"
+                android:maxLines="2"
 
-        <ImageView
-            android:id="@+id/have_read"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginRight="140dp"
-            android:contentDescription="Have Read icon"
-            app:layout_constraintBottom_toBottomOf="@+id/book_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/clock_icon"
-            app:layout_constraintTop_toBottomOf="@+id/book_progressbar"
-            tools:srcCompat="@drawable/ic_action_have_read_icon" />
+                android:textColor="#333333"
+                android:textFontWeight="300"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/book_info"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/book_image"
+                app:layout_constraintStart_toEndOf="@+id/book_image"
+                app:layout_constraintTop_toTopOf="@+id/book_image" />
 
-        <ImageView
-            android:id="@+id/new_collection"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginRight="100dp"
-            android:contentDescription="New Collection icon"
-            app:layout_constraintBottom_toBottomOf="@+id/book_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/have_read"
-            app:layout_constraintTop_toBottomOf="@+id/book_progressbar"
-            tools:srcCompat="@drawable/ic_action_new_collection_icon" />
+                <TextView
+                    android:id="@+id/book_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#333333"
+                    android:textFontWeight="300"
 
-        <ImageView
-            android:id="@+id/settings"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="69dp"
-            android:layout_marginRight="69dp"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/new_collection"
-            app:layout_constraintTop_toBottomOf="@+id/book_progressbar"
-            tools:srcCompat="@drawable/ic_action_settings_icon" />
+                    android:layout_marginStart="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginEnd="100dp"
+                    android:layout_marginRight="100dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="Book_info"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toTopOf="@+id/book_progressbar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/book_image"
+                    app:layout_constraintTop_toBottomOf="@+id/book_title" />
 
-        <ProgressBar
-            android:id="@+id/book_progressbar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="280dp"
-            android:layout_height="10dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="300dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/new_collection"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/book_info"
-            app:layout_constraintTop_toTopOf="@+id/book_image" />
+                <ProgressBar
+                    android:id="@+id/book_progressbar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="260dp"
+                    android:layout_height="3dp"
+                    android:layout_marginStart="97dp"
+                    android:layout_marginLeft="97dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/icons"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/book_info"
+                    app:layout_constraintTop_toTopOf="@+id/book_image" />
 
+                <LinearLayout
+                    android:id="@+id/icons"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="22dp"
+                    android:orientation="horizontal"
+                    android:weightSum="5"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/book_image"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/book_progressbar">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageView
+                            android:id="@+id/star_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:contentDescription="Staricon"
+                            tools:srcCompat="@drawable/ic_action_star_icon" />
+
+                        <ImageView
+                            android:id="@+id/clock_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:contentDescription="clock icon"
+                            tools:srcCompat="@drawable/ic_action_clock_icon" />
+
+                        <ImageView
+                            android:id="@+id/have_read"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:contentDescription="Have Read icon"
+                            tools:srcCompat="@drawable/ic_action_have_read_icon" />
+
+                        <ImageView
+                            android:id="@+id/new_collection"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:contentDescription="New Collection icon"
+                            tools:srcCompat="@drawable/ic_action_new_collection_icon" />
+
+                        <ImageView
+                            android:id="@+id/settings"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:onClick="SettingsIconClicked"
+                            tools:srcCompat="@drawable/ic_action_settings_icon" />
+
+                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
+</LinearLayout>
