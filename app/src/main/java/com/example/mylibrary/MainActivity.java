@@ -3,6 +3,7 @@ package com.example.mylibrary;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(menu_main,menu);
@@ -109,9 +112,6 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
 
         if (itemThatWasClickedId==R.id.action_sortby)
         {
-            Context context = MainActivity.this;
-            String textToShow = "Sort By Clicked";
-            Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -142,7 +142,10 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     }
 
     public void SettingsIconClicked(View view) {
-        Toast.makeText(this,"Settings icon clicked",Toast.LENGTH_SHORT).show();
+        PopupMenu popup = new PopupMenu(this, view);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.settings_icon_menu, popup.getMenu());
+        popup.show();
     }
 
     @Override

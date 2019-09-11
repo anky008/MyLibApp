@@ -19,7 +19,39 @@
         android:id="@+id/action_sortby"
         android:orderInCategory="2"
         app:showAsAction="never"
-        android:title="Sort By"/>
+        android:title="Sort By"
+        >
+
+        <menu>
+            <group android:checkableBehavior="single" android:id="@+id/sort_by_items">
+                <item
+                    android:id="@+id/name"
+                    android:title="name"/>
+
+                <item
+                    android:id="@+id/file_name"
+                    android:title="File name"/>
+
+                <item
+                    android:id="@+id/file_format"
+                    android:title="File format"/>
+
+                <item
+                    android:id="@+id/file_size"
+                    android:title="File size"/>
+
+                <item
+                    android:id="@+id/modified_time"
+                    android:title="Modified time"/>
+
+                <item
+                    android:id="@+id/read_time"
+                    android:title="Read time"/>
+
+            </group>
+        </menu>
+
+    </item>
 
     <item
         android:id="@+id/action_filter"
