@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/book_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="5dp"
+        android:contentDescription="Book photo"
+        android:src="@drawable/bookcover"/>
+
+    <TextView
+        android:id="@+id/book_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"/>
+
+    <LinearLayout
+        android:id="@+id/icons"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="22dp"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <ImageView
+            android:id="@+id/star_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="Staricon"
+            tools:srcCompat="@drawable/ic_action_star_icon" />
+
+        <ImageView
+            android:id="@+id/clock_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="clock icon"
+            tools:srcCompat="@drawable/ic_action_clock_icon" />
+
+        <ImageView
+            android:id="@+id/have_read"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="Have Read icon"
+            tools:srcCompat="@drawable/ic_action_have_read_icon" />
+
+        <ImageView
+            android:id="@+id/new_collection"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="New Collection icon"
+            tools:srcCompat="@drawable/ic_action_new_collection_icon" />
+
+        <ImageView
+            android:id="@+id/settings"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="SettingsIconClicked"
+            tools:srcCompat="@drawable/ic_action_settings_icon" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/last_opened_info"
+        android:text="Last read info"
+        android:textSize="16sp"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/description_last_read_info"
+        android:text="Current Bookmark and last read time"
+        android:textSize="13sp"
+        android:layout_marginTop="7dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/doc_type_size"
+        android:text="Doc type size"
+        android:textSize="16sp"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/description_doc_type_size"
+        android:text="File format and size"
+        android:textSize="13sp"
+        android:layout_marginTop="7dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/document_identifier"
+        android:text="The document's file identifier"
+        android:textSize="16sp"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/description_document_identifier"
+        android:text="Some unknown info"
+        android:textSize="13sp"
+        android:layout_marginTop="7dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/storage_location_header"
+        android:text="File #1"
+        android:textSize="16sp"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/description_storage_location"
+        android:text="Storage Location of Book"
+        android:textSize="13sp"
+        android:layout_marginTop="7dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/storage_location_header_2"
+        android:text="File #2"
+        android:textSize="16sp"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/description_storage_location_2"
+        android:text="Second Storage Location of Book"
+        android:textSize="13sp"
+        android:layout_marginTop="15dp"/>
+
+</LinearLayout>
