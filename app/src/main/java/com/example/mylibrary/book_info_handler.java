@@ -18,11 +18,7 @@ public class book_info_handler extends AppCompatActivity {
 
         Intent intent=getIntent();
         if (intent.hasExtra(Intent.EXTRA_TEXT)) {
-            int clickeditemindex=intent.getIntExtra("Intent.EXTRA_TEXT",0);
 
-            String toastMessage = "Book: " + clickeditemindex + " clicked.";
-            mToast = Toast.makeText(this, toastMessage, Toast.LENGTH_LONG);
-            mToast.show();
         }
 
     }
