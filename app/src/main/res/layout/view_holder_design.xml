@@ -118,6 +118,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:contentDescription="Staricon"
+                            android:onClick="StarIconClicked"
                             tools:srcCompat="@drawable/ic_action_star_icon" />
 
                         <ImageView
@@ -126,6 +127,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:contentDescription="clock icon"
+                            android:onClick="ClockIconClicked"
                             tools:srcCompat="@drawable/ic_action_clock_icon" />
 
                         <ImageView
@@ -134,6 +136,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:contentDescription="Have Read icon"
+                            android:onClick="HaveReadIconClicked"
                             tools:srcCompat="@drawable/ic_action_have_read_icon" />
 
                         <ImageView
@@ -142,6 +145,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:contentDescription="New Collection icon"
+                            android:onClick="NewCollectionIconClicked"
                             tools:srcCompat="@drawable/ic_action_new_collection_icon" />
 
                         <ImageView

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     private RecyclerView RecyclerView_books;
     private Toolbar mainToolbar;
     private DrawerLayout mDrawerLayout;
-    private Toast mToast;
+    private Toast viewHolderIconsToast;
     private Toast navToast;
     private NavigationView navigationView;
     @Override
@@ -143,6 +143,12 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     }
 
     public void SettingsIconClicked(View view) {
+
+        if (viewHolderIconsToast!=null)
+        {
+            viewHolderIconsToast.cancel();
+        }
+
         PopupMenu popup = new PopupMenu(this, view);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.settings_icon_menu, popup.getMenu());
@@ -298,5 +304,40 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
 
+    }
+
+    public void NewCollectionIconClicked(View view) {
+        if (viewHolderIconsToast!=null)
+        {
+            viewHolderIconsToast.cancel();
+        }
+
+        viewHolderIconsToast.makeText(this,"New Collection Icon Clicked",Toast.LENGTH_SHORT).show();
+    }
+
+    public void HaveReadIconClicked(View view) {
+        if (viewHolderIconsToast!=null)
+        {
+            viewHolderIconsToast.cancel();
+        }
+
+        viewHolderIconsToast.makeText(this,"Have Read Icon Clicked",Toast.LENGTH_SHORT).show();
+    }
+
+    public void ClockIconClicked(View view) {
+        if (viewHolderIconsToast!=null)
+        {
+            viewHolderIconsToast.cancel();
+        }
+
+        viewHolderIconsToast.makeText(this,"Clock Icon Clicked",Toast.LENGTH_SHORT).show();
+    }
+
+    public void StarIconClicked(View view) {
+    if (viewHolderIconsToast!=null)
+    {
+        viewHolderIconsToast.cancel();
+    }
+        viewHolderIconsToast.makeText(this,"Star Icon Clicked",Toast.LENGTH_SHORT).show();
     }
 }

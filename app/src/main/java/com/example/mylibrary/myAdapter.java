@@ -99,6 +99,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.NumberViewHolder> 
 
         @Override
         public void onClick(View view) {
+
             int clickedPosition = getAdapterPosition();
             mOnClickListener.onListItemClick(clickedPosition);
         }

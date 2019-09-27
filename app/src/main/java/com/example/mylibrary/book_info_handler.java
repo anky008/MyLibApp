@@ -36,11 +36,10 @@ public class book_info_handler extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(heading);
         actionBar.show();
+
     }
 
     @Override
