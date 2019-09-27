@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -25,7 +26,12 @@ import static com.example.mylibrary.R.menu.menu_main;
 
 public class MainActivity extends AppCompatActivity implements myAdapter.ListItemClickListener,NavigationView.OnNavigationItemSelectedListener {
 
-    static final int NUM_LIST_ITEMS=100;
+    private boolean HaveReadResult = true;
+    private boolean StarIconResult = true;
+    private boolean ClockIconResult = true;
+    private boolean NewCollectionResult = true;
+
+    static final int NUM_LIST_ITEMS = 100;
     private myAdapter mAdapter;
     private RecyclerView RecyclerView_books;
     private Toolbar mainToolbar;
@@ -33,34 +39,53 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     private Toast viewHolderIconsToast;
     private Toast navToast;
     private NavigationView navigationView;
+
+
+    private ImageView clockIcon;
+    private ImageView starIcon;
+    private ImageView newCollectionIcon;
+    private ImageView haveReadIcon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_layout);
-        mainToolbar=findViewById(R.id.toolbar);
+        mainToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mainToolbar);
-        mDrawerLayout=findViewById(R.id.drawer_layout);
-        navigationView=findViewById(R.id.nav_view);
-
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        haveReadIcon = (ImageView) findViewById(R.id.have_read);
+        clockIcon = (ImageView) findViewById(R.id.clock_icon);
+        newCollectionIcon = (ImageView) findViewById(R.id.new_collection);
+        starIcon = (ImageView) findViewById(R.id.star_icon);
 
-        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,mDrawerLayout,mainToolbar,
-                R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        initToolBar();
+        initRecyclerView();
+    }
+
+    void initToolBar()
+    {
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mainToolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+    }
 
-        RecyclerView_books= findViewById(R.id.rv_books);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+
+    void initRecyclerView() {
+
+    RecyclerView_books=findViewById(R.id.rv_books);
+    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         RecyclerView_books.setLayoutManager(linearLayoutManager);
 
         RecyclerView_books.setHasFixedSize(true);
         mAdapter=new myAdapter(NUM_LIST_ITEMS,this);
         RecyclerView_books.setAdapter(mAdapter);
-
-    }
+}
 
     @Override
     public void onBackPressed()
@@ -307,6 +332,18 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     }
 
     public void NewCollectionIconClicked(View view) {
+
+        if (NewCollectionResult)
+        {
+            newCollectionIcon.setImageResource(R.drawable.ic_action_new_collection_icon_yellow);
+            NewCollectionResult=false;
+        }
+
+        else
+        {
+            newCollectionIcon.setImageResource(R.drawable.ic_action_new_collection_icon_black);
+            NewCollectionResult=true;
+        }
         if (viewHolderIconsToast!=null)
         {
             viewHolderIconsToast.cancel();
@@ -316,6 +353,15 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     }
 
     public void HaveReadIconClicked(View view) {
+
+        if (HaveReadResult==true) {
+            haveReadIcon.setImageResource(R.drawable.ic_action_have_read_icon_yellow);
+            HaveReadResult=false;
+        }
+        else {
+            haveReadIcon.setImageResource(R.drawable.ic_action_have_read_icon_black);
+            HaveReadResult=true;
+        }
         if (viewHolderIconsToast!=null)
         {
             viewHolderIconsToast.cancel();
@@ -325,6 +371,16 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     }
 
     public void ClockIconClicked(View view) {
+
+        if (ClockIconResult==true) {
+            clockIcon.setImageResource(R.drawable.ic_action_clock_icon_yellow);
+            ClockIconResult=false;
+        }
+        else {
+            clockIcon.setImageResource(R.drawable.ic_action_clock_icon_black);
+            ClockIconResult=true;
+        }
+
         if (viewHolderIconsToast!=null)
         {
             viewHolderIconsToast.cancel();
@@ -334,6 +390,15 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     }
 
     public void StarIconClicked(View view) {
+
+        if (StarIconResult==true) {
+            starIcon.setImageResource(R.drawable.ic_action_star_icon_yellow);
+            StarIconResult=false;
+        }
+        else {
+            starIcon.setImageResource(R.drawable.ic_action_star_icon_black);
+            StarIconResult=true;
+        }
     if (viewHolderIconsToast!=null)
     {
         viewHolderIconsToast.cancel();

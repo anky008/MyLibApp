@@ -88,11 +88,11 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.NumberViewHolder> 
            mBookName.setText("ViewHolder index: "+ listIndex);
             mBookInfo.setText("ViewHolder index: "+ listIndex);
             mBookCover.setImageResource(R.drawable.bookcover);
-            mstarIcon.setImageResource(R.drawable.ic_action_star_icon);
-            mClockIcon.setImageResource(R.drawable.ic_action_clock_icon);
-            mHaveReadIcon.setImageResource(R.drawable.ic_action_have_read_icon);
-            mNewCollectionIcon.setImageResource(R.drawable.ic_action_new_collection_icon);
-            mSettings.setImageResource(R.drawable.ic_action_settings_icon);
+            mstarIcon.setImageResource(R.drawable.ic_action_star_icon_black);
+            mClockIcon.setImageResource(R.drawable.ic_action_clock_icon_black);
+            mHaveReadIcon.setImageResource(R.drawable.ic_action_have_read_icon_black);
+            mNewCollectionIcon.setImageResource(R.drawable.ic_action_new_collection_icon_black);
+            mSettings.setImageResource(R.drawable.ic_action_settings_icon_black);
             mProgressBar.setVisibility(View.VISIBLE);
 
         }

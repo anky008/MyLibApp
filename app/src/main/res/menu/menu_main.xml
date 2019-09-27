@@ -7,7 +7,7 @@
         android:id="@+id/action_search"
         android:orderInCategory="2"
         app:showAsAction="always"
-        android:icon="@drawable/ic_action_search_icon"
+        android:icon="@drawable/ic_action_search_icon_black"
         android:title="Search"/>
     <item
         android:id="@+id/action_clearlist"
@@ -67,7 +67,7 @@
         android:id="@+id/action_supportUs"
         android:orderInCategory="1"
         app:showAsAction="always"
-        android:icon="@drawable/ic_action_support_us_icon"
+        android:icon="@drawable/ic_action_support_us_icon_black"
         android:title="Support Us"/>
 
 

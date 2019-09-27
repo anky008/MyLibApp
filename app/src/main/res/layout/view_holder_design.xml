@@ -119,7 +119,7 @@
                             android:layout_weight="1"
                             android:contentDescription="Staricon"
                             android:onClick="StarIconClicked"
-                            tools:srcCompat="@drawable/ic_action_star_icon" />
+                            tools:srcCompat="@drawable/ic_action_star_icon_black" />
 
                         <ImageView
                             android:id="@+id/clock_icon"
@@ -128,7 +128,7 @@
                             android:layout_weight="1"
                             android:contentDescription="clock icon"
                             android:onClick="ClockIconClicked"
-                            tools:srcCompat="@drawable/ic_action_clock_icon" />
+                            android:src="@drawable/ic_action_clock_icon_black" />
 
                         <ImageView
                             android:id="@+id/have_read"
@@ -137,7 +137,7 @@
                             android:layout_weight="1"
                             android:contentDescription="Have Read icon"
                             android:onClick="HaveReadIconClicked"
-                            tools:srcCompat="@drawable/ic_action_have_read_icon" />
+                            android:src="@drawable/ic_action_have_read_icon_black" />
 
                         <ImageView
                             android:id="@+id/new_collection"
@@ -146,7 +146,7 @@
                             android:layout_weight="1"
                             android:contentDescription="New Collection icon"
                             android:onClick="NewCollectionIconClicked"
-                            tools:srcCompat="@drawable/ic_action_new_collection_icon" />
+                            android:src="@drawable/ic_action_new_collection_icon_black" />
 
                         <ImageView
                             android:id="@+id/settings"
@@ -154,7 +154,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:onClick="SettingsIconClicked"
-                            tools:srcCompat="@drawable/ic_action_settings_icon" />
+                            android:src="@drawable/ic_action_settings_icon_black" />
 
                 </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>

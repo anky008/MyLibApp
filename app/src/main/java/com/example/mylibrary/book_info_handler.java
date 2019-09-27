@@ -50,6 +50,7 @@ public class book_info_handler extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         int itemThatWasClickedId = item.getItemId();
         if (itemThatWasClickedId == R.id.read_now) {
             return true;

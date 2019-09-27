@@ -11,7 +11,7 @@
         android:layout_marginStart="2dp"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:src="@drawable/ic_action_nav_header_icon"/>
+        android:src="@drawable/ic_action_nav_header_icon_black"/>
 
     <TextView
         android:id="@+id/nav_text"

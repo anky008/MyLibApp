@@ -12,67 +12,67 @@
         <item
             android:id="@+id/nav_books_and_documents"
             android:title="Books &amp; documents"
-            android:icon="@drawable/ic_action_books_and_documents_icon"
+            android:icon="@drawable/ic_action_books_and_documents_icon_black"
             />
 
         <item
             android:id="@+id/nav_favourites"
             android:title="Favourites"
-            android:icon="@drawable/ic_action_star_icon"
+            android:icon="@drawable/ic_action_star_icon_black"
             />
 
         <item
             android:id="@+id/nav_to_read"
             android:title="To Read"
-            android:icon="@drawable/ic_action_clock_icon"
+            android:icon="@drawable/ic_action_clock_icon_black"
             />
 
         <item
             android:id="@+id/nav_nav_have_read"
             android:title="Have Read"
-            android:icon="@drawable/ic_action_have_read_icon"
+            android:icon="@drawable/ic_action_have_read_icon_black"
             />
 
         <item
             android:id="@+id/nav_authors"
             android:title="Authors"
-            android:icon="@drawable/ic_action_author_icon"
+            android:icon="@drawable/ic_action_author_icon_black"
             />
 
         <item
             android:id="@+id/nav_series"
             android:title="Series"
-            android:icon="@drawable/ic_action_series_icon"
+            android:icon="@drawable/ic_action_series_icon_black"
             />
 
         <item
             android:id="@+id/nav_collections"
             android:title="Collections"
-            android:icon="@drawable/ic_action_new_collection_icon"
+            android:icon="@drawable/ic_action_new_collection_icon_black"
             />
 
         <item
             android:id="@+id/nav_formats"
             android:title="Formats"
-            android:icon="@drawable/ic_action_formats_icon"
+            android:icon="@drawable/ic_action_nav_formats_icon_black"
             />
 
         <item
             android:id="@+id/nav_folders"
             android:title="Folders"
-            android:icon="@drawable/ic_action_folder_icon"
+            android:icon="@drawable/ic_action_folder_icon_black"
             />
 
         <item
             android:id="@+id/nav_downloads"
             android:title="Downloads"
-            android:icon="@drawable/ic_action_downloads_icon"
+            android:icon="@drawable/ic_action_download_icon_black"
             />
 
         <item
             android:id="@+id/nav_trash"
             android:title="Trash"
-            android:icon="@drawable/ic_action_trash_icon"
+            android:icon="@drawable/ic_action_trash_icon_black"
             />
     </group>
 
@@ -80,12 +80,12 @@
     <item
         android:id="@+id/nav_settings"
         android:title="Settings"
-        android:icon="@drawable/ic_action_nav_settings_icon"
+        android:icon="@drawable/ic_action_nav_settings_icon_black"
         />
     <item
         android:id="@+id/nav_send_feedback"
         android:title="Send Feedback"
-        android:icon="@drawable/ic_action_send_feedback_icon"
+        android:icon="@drawable/ic_action_send_feedback_icon_black"
         />
         </group>
 </menu>
