@@ -55,6 +55,9 @@ public class book_info_handler extends AppCompatActivity {
         if (itemThatWasClickedId == R.id.read_now) {
             return true;
         }
+        else if(itemThatWasClickedId == android.R.id.home){
+            onBackPressed();
+        }
 
         return true;
     }
