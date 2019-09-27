@@ -18,7 +18,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".book_info_handler"
-            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
