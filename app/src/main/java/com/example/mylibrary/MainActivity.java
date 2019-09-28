@@ -51,6 +51,14 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_layout);
+        findviews();
+        initToolBar();
+        initRecyclerView();
+    }
+
+
+    void findviews()
+    {
         mainToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mainToolbar);
         mDrawerLayout = findViewById(R.id.drawer_layout);
@@ -61,10 +69,9 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         clockIcon = (ImageView) findViewById(R.id.clock_icon);
         newCollectionIcon = (ImageView) findViewById(R.id.new_collection);
         starIcon = (ImageView) findViewById(R.id.star_icon);
-
-        initToolBar();
-        initRecyclerView();
     }
+
+
 
     void initToolBar()
     {
@@ -74,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
     }
+
+
 
 
     void initRecyclerView() {
@@ -86,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         mAdapter=new myAdapter(NUM_LIST_ITEMS,this);
         RecyclerView_books.setAdapter(mAdapter);
 }
+
+
 
     @Override
     public void onBackPressed()
@@ -106,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         getMenuInflater().inflate(menu_main,menu);
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -167,6 +180,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         return super.onOptionsItemSelected(item);
     }
 
+
+
     public void SettingsIconClicked(View view) {
 
         if (viewHolderIconsToast!=null)
@@ -179,6 +194,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         inflater.inflate(R.menu.settings_icon_menu, popup.getMenu());
         popup.show();
     }
+
+
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
@@ -197,6 +214,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         }
     };
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -331,6 +350,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
 
     }
 
+
+
     public void NewCollectionIconClicked(View view) {
 
         if (NewCollectionResult)
@@ -352,6 +373,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         viewHolderIconsToast.makeText(this,"New Collection Icon Clicked",Toast.LENGTH_SHORT).show();
     }
 
+
+
     public void HaveReadIconClicked(View view) {
 
         if (HaveReadResult==true) {
@@ -369,6 +392,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
 
         viewHolderIconsToast.makeText(this,"Have Read Icon Clicked",Toast.LENGTH_SHORT).show();
     }
+
+
 
     public void ClockIconClicked(View view) {
 
@@ -388,6 +413,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
 
         viewHolderIconsToast.makeText(this,"Clock Icon Clicked",Toast.LENGTH_SHORT).show();
     }
+
+
 
     public void StarIconClicked(View view) {
 
