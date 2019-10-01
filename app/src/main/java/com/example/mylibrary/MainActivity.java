@@ -18,9 +18,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.github.barteksc.pdfviewer.PDFView;
 import com.google.android.material.navigation.NavigationView;
+
+import java.io.File;
+import java.util.ArrayList;
 
 import static com.example.mylibrary.R.menu.menu_main;
 
@@ -45,6 +50,14 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     private ImageView starIcon;
     private ImageView newCollectionIcon;
     private ImageView haveReadIcon;
+
+
+
+
+    public static ArrayList<File> fileList = new ArrayList<File>();
+    public static int REQUEST_PERMISSIONS = 1;
+    boolean boolean_permission;
+    File dir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
