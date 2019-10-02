@@ -36,7 +36,8 @@
                 android:src="@drawable/bookcover"
                 android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="bookImageClicked"/>
 
             <TextView
                 android:id="@+id/book_title"
@@ -45,7 +46,7 @@
                 android:layout_marginTop="18dp"
                 android:fontFamily="sans-serif"
                 android:text="Title/ Hogward"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textColor="#333333"
                 android:textFontWeight="300"
                 app:layout_constraintStart_toStartOf="parent"

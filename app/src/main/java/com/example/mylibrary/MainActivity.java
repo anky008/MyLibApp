@@ -5,22 +5,33 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.github.barteksc.pdfviewer.PDFView;
 import com.google.android.material.navigation.NavigationView;
+
+import java.io.File;
+import java.util.ArrayList;
 
 import static com.example.mylibrary.R.menu.menu_main;
 
@@ -31,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     private boolean ClockIconResult = true;
     private boolean NewCollectionResult = true;
 
-    static final int NUM_LIST_ITEMS = 100;
     private myAdapter mAdapter;
     private RecyclerView RecyclerView_books;
     private Toolbar mainToolbar;
@@ -45,6 +55,14 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     private ImageView starIcon;
     private ImageView newCollectionIcon;
     private ImageView haveReadIcon;
+
+
+
+
+    public static ArrayList<File> fileList = new ArrayList<File>();
+    public static int REQUEST_PERMISSIONS = 1;
+    boolean boolean_permission;
+    File dir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +87,9 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         clockIcon = (ImageView) findViewById(R.id.clock_icon);
         newCollectionIcon = (ImageView) findViewById(R.id.new_collection);
         starIcon = (ImageView) findViewById(R.id.star_icon);
+
+        dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath());
+        fn_permission();
     }
 
 
@@ -92,9 +113,79 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         RecyclerView_books.setLayoutManager(linearLayoutManager);
 
         RecyclerView_books.setHasFixedSize(true);
-        mAdapter=new myAdapter(NUM_LIST_ITEMS,this);
+        mAdapter=new myAdapter(fileList,fileList.size(),this);
         RecyclerView_books.setAdapter(mAdapter);
 }
+
+    public ArrayList<File> getfile(File dir) {
+        File[] listFile = dir.listFiles();
+        if (listFile != null && listFile.length > 0) {
+            for (int i = 0; i < listFile.length; i++) {
+
+                if (listFile[i].isDirectory()) {
+                    getfile(listFile[i]);
+
+                } else {
+
+                    boolean booleanpdf = false;
+                    if (listFile[i].getName().endsWith(".pdf")) {
+
+                        for (int j = 0; j < fileList.size(); j++) {
+                            if (fileList.get(j).getName().equals(listFile[i].getName())) {
+                                booleanpdf = true;
+                            } else {
+
+                            }
+                        }
+
+                        if (booleanpdf) {
+                            booleanpdf = false;
+                        } else {
+                            fileList.add(listFile[i]);
+
+                        }
+                    }
+                }
+            }
+        }
+        return fileList;
+    }
+    private void fn_permission() {
+        if ((ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
+
+            if ((ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE))) {
+            } else {
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                        REQUEST_PERMISSIONS);
+
+            }
+        } else {
+            boolean_permission = true;
+
+            getfile(dir);
+            initRecyclerView();
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_PERMISSIONS) {
+
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                boolean_permission = true;
+                getfile(dir);
+                initRecyclerView();
+
+            } else {
+                Toast.makeText(getApplicationContext(), "Please allow the permission", Toast.LENGTH_LONG).show();
+
+            }
+        }
+    }
+
 
 
 
@@ -200,7 +291,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     @Override
     public void onListItemClick(int clickedItemIndex) {
         Intent intent=new Intent(this,book_info_handler.class);
-        intent.putExtra(Intent.EXTRA_TEXT,clickedItemIndex);
+        intent.putExtra("book_title",fileList.get(clickedItemIndex).getName());
+        intent.putExtra("clickedItemIndex",clickedItemIndex);
         startActivity(intent);
     }
 

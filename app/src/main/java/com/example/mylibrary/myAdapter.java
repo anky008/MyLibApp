@@ -12,6 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
+import java.util.ArrayList;
+
 public class myAdapter extends RecyclerView.Adapter<myAdapter.NumberViewHolder> {
 
     public interface ListItemClickListener {
@@ -20,9 +23,11 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.NumberViewHolder> 
 
     private int mNumberItems;
     final private ListItemClickListener mOnClickListener;
+    ArrayList<File> all_pdf;
 
-    public myAdapter(int numberItems,ListItemClickListener listener)
+    public myAdapter(ArrayList<File> doc_pdf,int numberItems,ListItemClickListener listener)
     {
+        all_pdf=doc_pdf;
         mNumberItems=numberItems;
         mOnClickListener=listener;
     }
@@ -85,9 +90,11 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.NumberViewHolder> 
 
         void bind(int listIndex)
         {
-           mBookName.setText("ViewHolder index: "+ listIndex);
+          // mBookName.setText("ViewHolder index: "+ listIndex);
+            mBookName.setText(all_pdf.get(listIndex).getName());
             mBookInfo.setText("ViewHolder index: "+ listIndex);
             mBookCover.setImageResource(R.drawable.bookcover);
+
             mstarIcon.setImageResource(R.drawable.ic_action_star_icon_black);
             mClockIcon.setImageResource(R.drawable.ic_action_clock_icon_black);
             mHaveReadIcon.setImageResource(R.drawable.ic_action_have_read_icon_black);

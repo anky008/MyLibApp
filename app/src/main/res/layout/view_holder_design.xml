@@ -43,44 +43,39 @@
                 android:id="@+id/book_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginEnd="100dp"
                 android:fontFamily="sans-serif"
+                android:lines="1"
+                android:maxLines="2"
+
                 android:scrollHorizontally="false"
                 android:singleLine="false"
-
                 android:text="Title"
-                android:maxLines="2"
 
                 android:textColor="#333333"
                 android:textFontWeight="300"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/book_info"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/book_image"
                 app:layout_constraintStart_toEndOf="@+id/book_image"
                 app:layout_constraintTop_toTopOf="@+id/book_image" />
 
-                <TextView
-                    android:id="@+id/book_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="#333333"
-                    android:textFontWeight="300"
+            <TextView
+                android:id="@+id/book_info"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="sans-serif"
 
-                    android:layout_marginStart="40dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginEnd="100dp"
-                    android:layout_marginRight="100dp"
-                    android:layout_marginBottom="30dp"
-                    android:text="Book_info"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toTopOf="@+id/book_progressbar"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/book_image"
-                    app:layout_constraintTop_toBottomOf="@+id/book_title" />
+                android:text="Book_info"
+                android:textColor="#333333"
+                android:textFontWeight="300"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toTopOf="@+id/book_progressbar"
+                app:layout_constraintStart_toEndOf="@+id/book_image"
+                app:layout_constraintTop_toBottomOf="@+id/book_title" />
 
                 <ProgressBar
                     android:id="@+id/book_progressbar"
