@@ -26,12 +26,10 @@ public class book_info_handler extends AppCompatActivity {
     TextView bookTitleTextView;
     TextView docTypeSizeTextView;
     TextView lastRead;
+    TextView storageLocationTextView;
 
     String bookTitle;
     private int ClickedItemIndex;
-    String lastread;
-
-    static final int GETPERCENTAGE=41;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +39,7 @@ public class book_info_handler extends AppCompatActivity {
         bookTitleTextView= findViewById(R.id.book_title);
         docTypeSizeTextView= findViewById(R.id.doc_type_size);
         lastRead=findViewById(R.id.last_read);
+        storageLocationTextView=findViewById(R.id.description_storage_location);
 
         Intent intent=getIntent();
         if (intent.hasExtra("book_title"))
@@ -98,6 +97,7 @@ public class book_info_handler extends AppCompatActivity {
             if (resultCode==RESULT_OK) {
                 String percentage = intent.getStringExtra("percentage");
                 String Date = intent.getStringExtra("date");
+                String fileLocation=intent.getStringExtra("filelocation");
 
 
 
@@ -105,6 +105,7 @@ public class book_info_handler extends AppCompatActivity {
                  Log.e("perbook", percentage);
                  Log.e("datebook",Date);
                 lastRead.setText(finalResult);
+                storageLocationTextView.setText(fileLocation);
             }
         }
     }

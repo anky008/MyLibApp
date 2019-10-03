@@ -26,9 +26,9 @@ public class PDFActivity extends AppCompatActivity implements OnPageChangeListen
     String pdfFileName;
     String TAG="PdfActivity";
     int position=-1;
-    Date getDateTime;
     int getpageCount;
     int closingPage=0;
+    String filelocation;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,12 +58,15 @@ public class PDFActivity extends AppCompatActivity implements OnPageChangeListen
                 .onLoad(this)
                 .scrollHandle(new DefaultScrollHandle(this))
                 .load();
+
+        Log.e("filelocation",MainActivity.fileList.get(position).toString());
+        //Log.e("well see", String.valueOf(MainActivity.fileList.get(position).getTotalSpace()));
+        filelocation=MainActivity.fileList.get(position).toString();
     }
     @Override
     public void onPageChanged(int page, int pageCount) {
         pageNumber = page;
         setTitle(String.format("%s %s / %s", pdfFileName, page + 1, pageCount));
-        Log.e("CHutiya",Integer.toString(pageCount));
         getpageCount=pageCount;
         closingPage=page;
     }
@@ -71,6 +74,7 @@ public class PDFActivity extends AppCompatActivity implements OnPageChangeListen
     public void loadComplete(int nbPages) {
         PdfDocument.Meta meta = pdfView.getDocumentMeta();
         printBookmarksTree(pdfView.getTableOfContents(), "-");
+        Log.e("possible meta", String.valueOf(meta));
 
     }
 
@@ -101,14 +105,15 @@ public class PDFActivity extends AppCompatActivity implements OnPageChangeListen
         }
 
 
-       // Log.e("percentageinpdf", String.valueOf(percentage));
         data.putExtra("percentage",Integer.toString(percentage));
         String sdf = new SimpleDateFormat("LLL dd, yyyy", Locale.getDefault()).format(new Date());
         String time = new SimpleDateFormat("hh : mm a", Locale.getDefault()).format(Calendar.getInstance().getTime());
         String currentDateandTime=sdf+" " +" "+time;
         data.putExtra("date",currentDateandTime);
+        data.putExtra("filelocation",filelocation);
         setResult(RESULT_OK,data);
         Log.e("datepdf",currentDateandTime);
+        Log.e("PageCount",Integer.toString(getpageCount));
         finish();
     }
 }
