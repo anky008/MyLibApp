@@ -14,6 +14,7 @@ import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.shockwave.pdfium.PdfDocument;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -25,7 +26,6 @@ public class PDFActivity extends AppCompatActivity implements OnPageChangeListen
     String pdfFileName;
     String TAG="PdfActivity";
     int position=-1;
-    StoreDataPdf getData;
     Date getDateTime;
     int getpageCount;
     int closingPage=0;
@@ -39,7 +39,7 @@ public class PDFActivity extends AppCompatActivity implements OnPageChangeListen
     }
 
     private void init(){
-        pdfView= (PDFView)findViewById(R.id.pdfView);
+        pdfView= findViewById(R.id.pdfView);
         position = getIntent().getIntExtra("position",-1);
         displayFromSdcard();
     }
@@ -85,9 +85,10 @@ public class PDFActivity extends AppCompatActivity implements OnPageChangeListen
 
 
     }
+
+    @Override
     public void onBackPressed()
     {
-        super.onBackPressed();
         Intent data=new Intent(this,book_info_handler.class);
         int percentage=0;
         try {
@@ -100,12 +101,14 @@ public class PDFActivity extends AppCompatActivity implements OnPageChangeListen
         }
 
 
-        Log.e("percentage", String.valueOf(percentage));
-        data.putExtra("hello","abc");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-        String currentDateandTime = sdf.format(new Date());
+       // Log.e("percentageinpdf", String.valueOf(percentage));
+        data.putExtra("percentage",Integer.toString(percentage));
+        String sdf = new SimpleDateFormat("LLL dd, yyyy", Locale.getDefault()).format(new Date());
+        String time = new SimpleDateFormat("hh : mm a", Locale.getDefault()).format(Calendar.getInstance().getTime());
+        String currentDateandTime=sdf+" " +" "+time;
+        data.putExtra("date",currentDateandTime);
         setResult(RESULT_OK,data);
-        Log.e("date",currentDateandTime);
-        finish( );
+        Log.e("datepdf",currentDateandTime);
+        finish();
     }
 }

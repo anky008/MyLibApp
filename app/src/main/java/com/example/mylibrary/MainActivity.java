@@ -83,10 +83,10 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        haveReadIcon = (ImageView) findViewById(R.id.have_read);
-        clockIcon = (ImageView) findViewById(R.id.clock_icon);
-        newCollectionIcon = (ImageView) findViewById(R.id.new_collection);
-        starIcon = (ImageView) findViewById(R.id.star_icon);
+        haveReadIcon = findViewById(R.id.have_read);
+        clockIcon = findViewById(R.id.clock_icon);
+        newCollectionIcon = findViewById(R.id.new_collection);
+        starIcon = findViewById(R.id.star_icon);
 
         dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath());
         fn_permission();
@@ -462,7 +462,7 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
             viewHolderIconsToast.cancel();
         }
 
-        viewHolderIconsToast.makeText(this,"New Collection Icon Clicked",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"New Collection Icon Clicked",Toast.LENGTH_SHORT).show();
     }
 
 
@@ -482,7 +482,7 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
             viewHolderIconsToast.cancel();
         }
 
-        viewHolderIconsToast.makeText(this,"Have Read Icon Clicked",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Have Read Icon Clicked",Toast.LENGTH_SHORT).show();
     }
 
 
@@ -503,7 +503,7 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
             viewHolderIconsToast.cancel();
         }
 
-        viewHolderIconsToast.makeText(this,"Clock Icon Clicked",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Clock Icon Clicked",Toast.LENGTH_SHORT).show();
     }
 
 
@@ -522,6 +522,6 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     {
         viewHolderIconsToast.cancel();
     }
-        viewHolderIconsToast.makeText(this,"Star Icon Clicked",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Star Icon Clicked",Toast.LENGTH_SHORT).show();
     }
 }

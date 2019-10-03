@@ -38,8 +38,8 @@ public class book_info_handler extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_info);
-        bookTitleTextView=(TextView) findViewById(R.id.book_title);
-        docTypeSizeTextView=(TextView) findViewById(R.id.doc_type_size);
+        bookTitleTextView= findViewById(R.id.book_title);
+        docTypeSizeTextView= findViewById(R.id.doc_type_size);
         lastRead=findViewById(R.id.last_read);
 
         Intent intent=getIntent();
@@ -59,7 +59,7 @@ public class book_info_handler extends AppCompatActivity {
 
     public void setActionBar(String heading) {
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.book_info_toolbar);
+        Toolbar myToolbar = findViewById(R.id.book_info_toolbar);
         setSupportActionBar(myToolbar);
 
         ActionBar actionBar = getSupportActionBar();
@@ -94,24 +94,17 @@ public class book_info_handler extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
         super.onActivityResult(requestCode, resultCode, intent);
-        Log.e("ho1","ho1");
-        Log.e("resultCode",Integer.toString(resultCode));
-        Log.e("requestCode",Integer.toString(requestCode));
         if (requestCode == 1) {
-            Log.e("ho2", "ho2");
             if (resultCode==RESULT_OK) {
-                Log.e("ho3", "ho3");
-                int percentage = intent.getIntExtra("percentage", 0);
+                String percentage = intent.getStringExtra("percentage");
                 String Date = intent.getStringExtra("date");
 
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append(percentage);
-                stringBuilder.append('%');
-                stringBuilder.append(Date);
 
-                lastread = stringBuilder.toString();
-                Log.e("lund", lastread);
-                lastRead.setText(lastread);
+
+                String finalResult =percentage + "%" +"  " + Date;
+                 Log.e("perbook", percentage);
+                 Log.e("datebook",Date);
+                lastRead.setText(finalResult);
             }
         }
     }
