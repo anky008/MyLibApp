@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -43,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     private boolean StarIconResult = true;
     private boolean ClockIconResult = true;
     private boolean NewCollectionResult = true;
-    private boolean isBackPressed=true;
 
     private myAdapter mAdapter;
     private RecyclerView RecyclerView_books;
@@ -61,8 +61,6 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     private ImageView haveReadIcon;
 
 
-
-
     public static ArrayList<File> fileList = new ArrayList<File>();
     public static int REQUEST_PERMISSIONS = 1;
     boolean boolean_permission;
@@ -77,7 +75,32 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         initToolBar();
         initRecyclerView();
         sharedPrefsforSplash();
+
+        fetchBooksAsyncTask task=new fetchBooksAsyncTask();
+        task.execute();
     }
+
+    @Override
+    protected void onResume() {
+        fetchBooksAsyncTask task=new fetchBooksAsyncTask();
+        task.execute();
+        super.onResume();
+    }
+
+    private class fetchBooksAsyncTask extends AsyncTask <Void,Integer,ArrayList<File>>
+    {
+
+        @Override
+        protected ArrayList<File> doInBackground(Void... voids) {
+            dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath());
+            return fn_permission();
+        }
+
+        protected void onPostExecute(ArrayList<File> result)
+        {
+            initRecyclerView();
+        }
+    };
 
     private void sharedPrefsforSplash() {
 
@@ -103,8 +126,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         newCollectionIcon = findViewById(R.id.new_collection);
         starIcon = findViewById(R.id.star_icon);
 
-        dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath());
-        fn_permission();
+        //dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath());
+        //fn_permission();
     }
 
 
@@ -121,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
 
 
 
-    void initRecyclerView() {
+    void initRecyclerView()  {
 
     RecyclerView_books=findViewById(R.id.rv_books);
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -165,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         }
         return fileList;
     }
-    private void fn_permission() {
+    private ArrayList<File> fn_permission() { //changing the type from void
         if ((ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
 
             if ((ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE))) {
@@ -177,10 +200,12 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         } else {
             boolean_permission = true;
 
-            getfile(dir);
-            initRecyclerView();
+            return getfile(dir);
+            //initRecyclerView();
 
         }
+
+        return null;// not present here
     }
 
     @Override
@@ -195,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
                 initRecyclerView();
 
             } else {
-                Toast.makeText(getApplicationContext(), "Please allow the permission", Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(), "Please allow the permission", Toast.LENGTH_LONG).show();
 
             }
         }

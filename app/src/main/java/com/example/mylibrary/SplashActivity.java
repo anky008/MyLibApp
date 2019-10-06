@@ -36,6 +36,7 @@ public class SplashActivity extends AppCompatActivity {
 
         appIconTextView.setAnimation(animationappIcon);
         appIconTextView.startAnimation(animationappIcon);
+        animationappName.setDuration(5000);
 
         appNameTextView.setAnimation(animationappName);
         appNameTextView.startAnimation(animationappName);
