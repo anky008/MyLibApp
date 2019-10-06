@@ -16,9 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     private boolean StarIconResult = true;
     private boolean ClockIconResult = true;
     private boolean NewCollectionResult = true;
+    private boolean isBackPressed=true;
 
     private myAdapter mAdapter;
     private RecyclerView RecyclerView_books;
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
     private DrawerLayout mDrawerLayout;
     private Toast viewHolderIconsToast;
     private Toast navToast;
+    private Toast isBackPressedToast;
     private NavigationView navigationView;
 
 
@@ -72,8 +76,19 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         findviews();
         initToolBar();
         initRecyclerView();
+        sharedPrefsforSplash();
     }
 
+    private void sharedPrefsforSplash() {
+
+        SharedPreferences settings = getSharedPreferences("prefs", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("firstRun", false);
+        editor.commit();
+
+        boolean firstRun = settings.getBoolean("firstRun", true);
+        Log.d("TAG1", "firstRun: " + Boolean.valueOf(firstRun).toString());
+    }
 
     void findviews()
     {
