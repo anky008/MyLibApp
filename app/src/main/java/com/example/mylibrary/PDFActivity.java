@@ -60,7 +60,7 @@ public class PDFActivity extends AppCompatActivity implements OnPageChangeListen
                 .load();
 
         Log.e("filelocation",MainActivity.fileList.get(position).toString());
-        //Log.e("well see", String.valueOf(MainActivity.fileList.get(position).getTotalSpace()));
+        Log.e("well see", String.valueOf(MainActivity.fileList.get(position).getUsableSpace()));
         filelocation=MainActivity.fileList.get(position).toString();
     }
     @Override

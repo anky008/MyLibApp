@@ -36,24 +36,35 @@ public class book_info_handler extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_info);
-        bookTitleTextView= findViewById(R.id.book_title);
-        docTypeSizeTextView= findViewById(R.id.doc_type_size);
-        lastRead=findViewById(R.id.last_read);
-        storageLocationTextView=findViewById(R.id.description_storage_location);
-
-        Intent intent=getIntent();
-        if (intent.hasExtra("book_title"))
-        {
-         bookTitle=intent.getStringExtra("book_title");
-         ClickedItemIndex=intent.getIntExtra("clickedItemIndex",-1);
-        }
-
+        findViews();
+        intentToGetData();
 
         bookTitleTextView.setText(bookTitle);
         docTypeSizeTextView.setText("pdf");
         setActionBar("About Document");
 
     }
+
+    public void intentToGetData()
+    {
+        Intent intent=getIntent();
+        if (intent.hasExtra("book_title"))
+        {
+            bookTitle=intent.getStringExtra("book_title");
+            ClickedItemIndex=intent.getIntExtra("clickedItemIndex",-1);
+        }
+
+    }
+
+
+    public void findViews()
+    {
+        bookTitleTextView= findViewById(R.id.book_title);
+        docTypeSizeTextView= findViewById(R.id.doc_type_size);
+        lastRead=findViewById(R.id.last_read);
+        storageLocationTextView=findViewById(R.id.description_storage_location);
+    }
+
 
 
     public void setActionBar(String heading) {
@@ -79,9 +90,7 @@ public class book_info_handler extends AppCompatActivity {
 
         int itemThatWasClickedId = item.getItemId();
         if (itemThatWasClickedId == R.id.read_now) {
-            Intent intent = new Intent(getApplicationContext(), PDFActivity.class);
-            intent.putExtra("position", ClickedItemIndex);
-            startActivityForResult(intent,1);
+           intenttopdfView();
         }
         else if(itemThatWasClickedId == android.R.id.home){
             onBackPressed();
@@ -112,10 +121,16 @@ public class book_info_handler extends AppCompatActivity {
 
 
     public void bookImageClicked(View view) {
+       intenttopdfView();
+    }
+
+    public void intenttopdfView()
+    {
         Intent intent = new Intent(getApplicationContext(), PDFActivity.class);
         intent.putExtra("position", ClickedItemIndex);
         startActivityForResult(intent,1);
     }
+
 
 
 }
