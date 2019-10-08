@@ -6,12 +6,11 @@
     tools:context=".SplashActivity"
     android:orientation="vertical"
     android:padding="50dp"
-    android:layout_centerVertical="true"
-    android:background="@drawable/appbackground">
+    android:id="@+id/splash"
+    android:layout_centerVertical="true">
 
     <ImageView
         android:id="@+id/app_icon"
-        android:src="@drawable/ic_launcher_foreground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="App icon"
@@ -22,7 +21,6 @@
         android:id="@+id/application_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MY LIBRARY"
         android:fontFamily="sans-serif-black"
         android:textFontWeight="600"
         android:textSize="50sp"

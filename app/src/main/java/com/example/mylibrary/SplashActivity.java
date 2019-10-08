@@ -2,13 +2,16 @@ package com.example.mylibrary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -16,80 +19,76 @@ import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
 
-    Animation animationappName;
-    Animation animationappIcon;
+    Animation animationappIcon,animationappName;
     ImageView appIconTextView;
     TextView appNameTextView;
+    Context context;
+    Intent intent;
+    LinearLayout linearLayout;
+    SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        findViews();
-        loadAnimations();
-    }
+        context= this;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-
-    private void loadAnimations() {
-        animationappName = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        animationappIcon=AnimationUtils.loadAnimation(this,R.anim.blink);
-
-        appIconTextView.setAnimation(animationappIcon);
-        appIconTextView.startAnimation(animationappIcon);
-        animationappName.setDuration(5000);
-
-        appNameTextView.setAnimation(animationappName);
-        appNameTextView.startAnimation(animationappName);
-        animationappName.setDuration(5000);
-
-        animationappName.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-             sharedPrefs();
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-    }
-
-    private void sharedPrefs() {
-        SharedPreferences settings = getSharedPreferences("prefs", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putBoolean("firstRun", true);
-        editor.commit();
-
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    private void findViews() {
         appIconTextView=(ImageView) findViewById(R.id.app_icon);
         appNameTextView=(TextView) findViewById(R.id.application_name);
-    }
+        linearLayout = (LinearLayout)findViewById(R.id.splash);
+
+        boolean previouslyStarted = prefs.getBoolean("firstRun", false);
+        if(!previouslyStarted) {
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        SharedPreferences settings = getSharedPreferences("prefs", 0);
-        boolean firstRun = settings.getBoolean("firstRun", true);
-        if (!firstRun) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            Log.d("TAG1", "firstRun(false): " + Boolean.valueOf(firstRun).toString());
-        } else {
-            Log.d("TAG1", "firstRun(true): " + Boolean.valueOf(firstRun).toString());
+            SharedPreferences.Editor edit = prefs.edit();
+            edit.putBoolean("firstRun", Boolean.TRUE);
+            edit.commit();
+
+          //  loadAnimations();
+
+            Log.e("Danger","first");
+
+            linearLayout.setBackground(getDrawable(R.drawable.appbackground));
+            appIconTextView.setImageResource(R.drawable.ic_launcher_foreground);
+            appNameTextView.setText("MY LIBRARY");
+            new Timer().schedule(new TimerTask(){
+                public void run() {
+                    Log.d("Log_test","home screen open");
+                    intent = new Intent(context, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            }, 1000 );
+
+
+
+
         }
+        else{
+            Log.e("Danger","not first");
+            intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+
+
+
+
+
+
+
+
+
+
     }
-}
+
+
+
+    }
+
+
+
 
 
