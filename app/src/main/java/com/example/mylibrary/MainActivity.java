@@ -82,7 +82,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
 
     @Override
     protected void onResume() {
-        fetchBooksAsyncTask task=new fetchBooksAsyncTask();
+        fileList.clear();
+        fetchBooksAsyncTask task = new fetchBooksAsyncTask();
         task.execute();
         super.onResume();
     }

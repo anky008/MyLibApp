@@ -90,7 +90,6 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.NumberViewHolder> 
 
         void bind(int listIndex)
         {
-          // mBookName.setText("ViewHolder index: "+ listIndex);
             mBookName.setText(all_pdf.get(listIndex).getName());
             mBookInfo.setText("ViewHolder index: "+ listIndex);
             mBookCover.setImageResource(R.drawable.bookcover);

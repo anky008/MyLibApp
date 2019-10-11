@@ -35,7 +35,6 @@ public class PDFActivity extends AppCompatActivity implements OnPageChangeListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf);
         init();
-
     }
 
     private void init(){
@@ -60,7 +59,6 @@ public class PDFActivity extends AppCompatActivity implements OnPageChangeListen
                 .load();
 
         Log.e("filelocation",MainActivity.fileList.get(position).toString());
-        Log.e("well see", String.valueOf(MainActivity.fileList.get(position).getUsableSpace()));
         filelocation=MainActivity.fileList.get(position).toString();
     }
     @Override
@@ -74,8 +72,8 @@ public class PDFActivity extends AppCompatActivity implements OnPageChangeListen
     public void loadComplete(int nbPages) {
         PdfDocument.Meta meta = pdfView.getDocumentMeta();
         printBookmarksTree(pdfView.getTableOfContents(), "-");
-        Log.e("possible meta", String.valueOf(meta));
 
+        Log.e("possible meta", String.valueOf(meta));
     }
 
     public void printBookmarksTree(List<PdfDocument.Bookmark> tree, String sep) {
@@ -85,9 +83,6 @@ public class PDFActivity extends AppCompatActivity implements OnPageChangeListen
                 printBookmarksTree(b.getChildren(), sep + "-");
             }
         }
-
-
-
     }
 
     @Override

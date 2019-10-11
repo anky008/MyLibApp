@@ -61,11 +61,7 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-            }, 1000 );
-
-
-
-
+            }, 1000);
         }
         else{
             Log.e("Danger","not first");
@@ -73,19 +69,7 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-
-
-
-
-
-
-
-
-
     }
-
-
-
     }
 
 
