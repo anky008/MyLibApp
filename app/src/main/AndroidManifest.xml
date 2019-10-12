@@ -21,18 +21,28 @@
         </activity>
 
         <activity android:name=".PDFActivity" />
+
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop">
 
+            <meta-data android:name="android.app.searchable"
+                android:value=".SearchResultsActivity"/>
+
         </activity>
+
         <activity
             android:name=".book_info_handler"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
         </activity>
 
     </application>

@@ -8,12 +8,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,6 +37,10 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.io.File;
 import java.util.ArrayList;
+
+import android.app.SearchManager;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 
 import static com.example.mylibrary.R.menu.menu_main;
 
@@ -62,9 +68,12 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
 
 
     public static ArrayList<File> fileList = new ArrayList<File>();
+    public static ArrayList<EachViewHolderItem> eachViewHolderItems=new ArrayList<>();
     public static int REQUEST_PERMISSIONS = 1;
     boolean boolean_permission;
     File dir;
+
+    int index=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,9 +161,14 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         RecyclerView_books.setLayoutManager(linearLayoutManager);
 
         RecyclerView_books.setHasFixedSize(true);
-        mAdapter=new myAdapter(fileList,fileList.size(),this);
+        // fileList was sent as the first parameter
+        Log.e("Size of dataSet in main",Integer.toString(eachViewHolderItems.size()));
+        Log.e("Size of fileList",Integer.toString(fileList.size()));
+        mAdapter=new myAdapter(eachViewHolderItems,this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(RecyclerView_books);
         RecyclerView_books.setAdapter(mAdapter);
 }
+
 
     public ArrayList<File> getfile(File dir) {
         File[] listFile = dir.listFiles();
@@ -181,7 +195,8 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
                             booleanpdf = false;
                         } else {
                             fileList.add(listFile[i]);
-
+                            eachViewHolderItems.add(new EachViewHolderItem(listFile[i].getName(),Integer.toString(index),R.drawable.bookcover));
+                            index++;
                         }
                     }
                 }
@@ -246,21 +261,39 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(menu_main,menu);
+        getMenuInflater().inflate(menu_main, menu);
+
+        MenuItem searchViewItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchViewItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                                              @Override
+                                              public boolean onQueryTextSubmit(String query) {
+                                                  searchView.clearFocus();
+
+                                                  return false;
+                                              }
+
+                                              @Override
+                                              public boolean onQueryTextChange(String newText) {
+                                                  mAdapter.getFilter().filter(newText);
+                                                  return true;
+                                              }
+                                          }
+        );
+
         return true;
     }
 
 
-
-    @Override
+            @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemThatWasClickedId = item.getItemId();
-        if (itemThatWasClickedId == R.id.action_search) {
+        /*if (itemThatWasClickedId == R.id.action_search) {
             Context context = MainActivity.this;
             String textToShow = "Search clicked";
             Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
             return true;
-        }
+        }*/
 
 
         if (itemThatWasClickedId==R.id.action_supportUs)
@@ -304,11 +337,6 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
             return true;
         }
 
-
-
-
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -337,7 +365,7 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
         startActivity(intent);
     }
 
-    ItemTouchHelper.SimpleCallback itemTouchHelperCallback=new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback=new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT|ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
@@ -345,6 +373,11 @@ public class MainActivity extends AppCompatActivity implements myAdapter.ListIte
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            Log.e("Adapter Position:",Integer.toString(viewHolder.getAdapterPosition()));
+            //fileList.remove(viewHolder.getAdapterPosition());
+            eachViewHolderItems.remove(viewHolder.getAdapterPosition());
+            Log.e("Size of dataset:",Integer.toString(eachViewHolderItems.size()));
+            mAdapter.notifyDataSetChanged();
         }
     };
 
